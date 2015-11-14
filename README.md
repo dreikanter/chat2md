@@ -4,6 +4,6 @@ Have you ever copied chat history to new issue or wiki page? This is a chat hist
 
 ![Alt text](https://monosnap.com/file/Ug7md8USgcqWycdNFIilJ8ZHatJpcF.png)
 
-Live demo: https://chat2md.herokuapp.com
-License: MIT
+Live demo: https://chat2md.herokuapp.com  
+License: MIT  
 Feedback: http://twitter.com/dreikanter
