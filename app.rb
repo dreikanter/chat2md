@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'tilt/erubis'
+require 'tilt/erb'
 
 ROOT = File.expand_path('app', File.dirname(__FILE__))
 

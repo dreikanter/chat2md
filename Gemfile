@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 gem 'sinatra'
+gem 'tilt'
 
 group :development, :test do
   gem 'awesome_print'

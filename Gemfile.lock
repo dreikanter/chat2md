@@ -153,6 +153,7 @@ DEPENDENCIES
   rails_12factor
   rb-fsevent
   sinatra
+  tilt
 
 BUNDLED WITH
    1.10.6
