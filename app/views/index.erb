@@ -7,22 +7,22 @@
   <div class="form-group">
     <div class="btn-toolbar" role="toolbar">
       <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-default active">
-          <input name="from" type="radio" value="slack" autocomplete="off" checked>Slack
+        <label class="btn btn-default <%= 'active' if @from.nil? || @from == 'slack' %>">
+          <input name="from" type="radio" value="slack" autocomplete="off" <%= 'checked' if @from.nil? || @from == 'slack' %>>Slack
         </label>
-        <label class="btn btn-default">
-          <input name="from" type="radio" value="skype" autocomplete="off">Skype
+        <label class="btn btn-default <%= 'active' if @from == 'skype' %>">
+          <input name="from" type="radio" value="skype" autocomplete="off" <%= 'checked' if @from == 'skype' %>>Skype
         </label>
       </div>
       <div class="btn-group" data-toggle="buttons" style="padding-left:10px; padding-right:10px;">
         <label class="form-control-static">&rarr;</label>
       </div>
       <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-default active">
-          <input name="to" type="radio" value="github" autocomplete="off" checked>GitHub Markdown
+        <label class="btn btn-default <%= 'active' if @to.nil? || @to == 'github' %>">
+          <input name="to" type="radio" value="github" autocomplete="off" <%= 'checked' if @to.nil? || @to == 'github' %>>GitHub Markdown
         </label>
-        <label class="btn btn-default">
-          <input name="to" type="radio" value="jira" autocomplete="off">Jira
+        <label class="btn btn-default <%= 'active' if @to == 'jira' %>">
+          <input name="to" type="radio" value="jira" autocomplete="off" <%= 'checked' if @to == 'jira' %>>Jira
         </label>
       </div>
       <div class="btn-group" style="margin-left:20px">

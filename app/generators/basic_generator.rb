@@ -17,7 +17,7 @@ module Generators
     end
 
     def splitter
-      "\n"
+      "\n\n"
     end
   end
 end

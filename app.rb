@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'tilt/erubis'
+require 'logger'
 
 require 'pry'
 require 'awesome_print'
@@ -11,12 +12,18 @@ Dir.glob("#{ROOT}/**/*.rb").sort.each { |f| require f }
 class Converter < Sinatra::Base
   set :views, "#{ROOT}/views"
 
+  configure do
+    $logger = Logger.new(STDOUT)
+  end
+
   get '/' do
     erb :index
   end
 
   post '/' do
-    @result = ChatConverter.convert(params[:from], params[:to], params[:content])
+    @from = params[:from]
+    @to = params[:to]
+    @result = ChatConverter.convert(@from, @to, params[:content])
     erb :index
   end
 end
