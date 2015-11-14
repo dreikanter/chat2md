@@ -1,9 +1,5 @@
 require 'sinatra'
 require 'tilt/erubis'
-require 'logger'
-
-require 'pry'
-require 'awesome_print'
 
 ROOT = File.expand_path('app', File.dirname(__FILE__))
 
@@ -11,10 +7,6 @@ Dir.glob("#{ROOT}/**/*.rb").sort.each { |f| require f }
 
 class Converter < Sinatra::Base
   set :views, "#{ROOT}/views"
-
-  configure do
-    $logger = Logger.new(STDOUT)
-  end
 
   get '/' do
     erb :index

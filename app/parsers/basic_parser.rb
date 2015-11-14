@@ -6,9 +6,9 @@ module Parsers
       @content = content
     end
 
-    def joined_messages
+    def messages
       joined = []
-      (messages || []).each do |item|
+      (raw_messages || []).each do |item|
         if joined.empty? || joined.last[:sender] != item[:sender]
           joined << { sender: item[:sender], messages: [time_and_body(item)] }
         else
@@ -18,8 +18,15 @@ module Parsers
       joined
     end
 
-    def messages
+    protected
+
+    def split_pattern
       raise NotImplementedError
+    end
+
+    def raw_messages
+      parts = content.strip.split(split_pattern)[1..-1].to_a
+      parts.each_slice(2).map { |m| parse_message(m) }
     end
 
     def time_and_body(message)

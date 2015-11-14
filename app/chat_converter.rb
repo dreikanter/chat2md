@@ -6,7 +6,7 @@ class ChatConverter
     raise ArgumentError unless FROM.include?(from) && TO.include?(to)
     parser = namespaced_class(Parsers, "#{from}_parser")
     generator = namespaced_class(Generators, "#{to}_generator")
-    generator.new(parser.new(content).joined_messages).content
+    generator.new(parser.new(content).messages).content
   end
 
   def self.classify(str)

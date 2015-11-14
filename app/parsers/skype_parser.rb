@@ -1,14 +1,14 @@
 module Parsers
   class SkypeParser < BasicParser
-    SPLIT_PATTERN = /(^\[[\/\:\d ]+\] [^\:]+\:\s+)/
-    HEAD_PATTERN = /(^\[([\/\:\d ]+)\] ([^\:]+)\:\s+)/
+    protected
 
-    def messages
-      parts = content.strip.split(SPLIT_PATTERN)[1..-1].to_a
-      parts.each_slice(2).map { |m| parse_message(m) }
+    def split_pattern
+      /(^\[[\/\:\d ]+\] [^\:]+\:\s+)/
     end
 
-    private
+    def head_pattern
+      /(^\[([\/\:\d ]+)\] ([^\:]+)\:\s+)/
+    end
 
     def parse_message(message)
       head, body = message
