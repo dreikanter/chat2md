@@ -1,0 +1,66 @@
+<h1>Chat history formatter</h1>
+
+<form action="/" method="post" class="form">
+  <div class="form-group">
+    <textarea name="content" class="form-control" rows="3" placeholder="Copy chat history from Slack or Skype here"></textarea>
+  </div>
+  <div class="form-group">
+    <div class="btn-toolbar" role="toolbar">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-default active">
+          <input name="from" type="radio" value="slack" autocomplete="off" checked>Slack
+        </label>
+        <label class="btn btn-default">
+          <input name="from" type="radio" value="skype" autocomplete="off">Skype
+        </label>
+      </div>
+      <div class="btn-group" data-toggle="buttons" style="padding-left:10px; padding-right:10px;">
+        <label class="form-control-static">&rarr;</label>
+      </div>
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-default active">
+          <input name="to" type="radio" value="github" autocomplete="off" checked>GitHub Markdown
+        </label>
+        <label class="btn btn-default">
+          <input name="to" type="radio" value="jira" autocomplete="off">Jira
+        </label>
+      </div>
+      <div class="btn-group" style="margin-left:20px">
+        <button type="submit" class="btn btn-primary">Convert</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<% if @result %>
+  <form class="form">
+    <div class="form-group">
+      <textarea class="form-control converted-text" rows="3" readonly><%= @result %></textarea>
+    </div>
+    <div class="form-group">
+      <a href="#" class="btn btn-default copy-button" data-clipboard-target=".converted-text">Copy to clipboard</a>
+    </div>
+  </form>
+<% end %>
+
+<script>
+  $(function() {
+    $("textarea").each(function(_, t) {
+      var offset = !window.opera ? (t.offsetHeight - t.clientHeight) : (t.offsetHeight + parseInt(window.getComputedStyle(t, null).getPropertyValue("border-top-width"))) ;
+
+      $(t).on("input keyup change", function() {
+        t.style.height = "auto";
+        t.style.height = (t.scrollHeight  + offset ) + "px";
+      }).trigger("keyup");
+    });
+
+    new Clipboard('.copy-button');
+  });
+</script>
+
+<hr>
+
+<p class="footer">
+  This is an open source tool. Your data remains private, and wont be persisted anywhere.<br>
+  <a href="https://github.com/dreikanter/chat2md">https://github.com/dreikanter/chat2md</a>
+</p>
