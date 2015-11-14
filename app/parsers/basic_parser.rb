@@ -8,7 +8,7 @@ module Parsers
 
     def joined_messages
       joined = []
-      messages.each do |item|
+      (messages || []).each do |item|
         if joined.empty? || joined.last[:sender] != item[:sender]
           joined << { sender: item[:sender], messages: [time_and_body(item)] }
         else
