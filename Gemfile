@@ -5,6 +5,7 @@ ruby '2.2.3'
 gem 'sinatra'
 
 group :development, :test do
+  gem 'awesome_print'
   gem 'pry-byebug'
   gem 'guard', '>= 2.2.2', require: false
   gem 'guard-minitest', require: false
@@ -12,6 +13,7 @@ group :development, :test do
   gem 'eslint-rails'
   gem 'foreman'
   gem 'guard-rubocop', require: false
+  gem 'pry'
 end
 
 group :production do
