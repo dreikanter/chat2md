@@ -1,21 +1,24 @@
 module Parsers
   class SlackParser < BasicParser
-    SPLIT_PATTERN = %r(^([\w\-_\. ]+[\[\] \d:APM]+\s*$))
-    HEADER_PATERN = /^(.*)\[([\d: APM]+)\]$/
+    protected
 
-    def messages
-      parts = content.strip.split(SPLIT_PATTERN)[1..-1]
-      ap parts
-      # parts.each_slice(2).map { |p| parse_part(p) }
+    def split_pattern
+      /(^[\w\-_\. ]+\[\d\d?:\d\d(?:[ APM]{3})\]\s*$)/
     end
 
-    private
+    def header_pattern
+      /^([\w\-_\. ]+)\[(\d\d?:\d\d(?:[ APM]{3}))\]\s*$/
+    end
 
-    def parse_part(part)
-      # ap part
-      # head, body = part
-      # sender, time = HEADER_PATERN.match(head).to_a[1, 2]
-      # { sender: sender, time: time, body: body.strip }
+    def parse_message(message)
+      head, body = message
+      sender, time = header_pattern.match(head).to_a[1, 2]
+      body = drop_timestamps(body.to_s.strip)
+      { sender: sender.to_s.strip, time: time.to_s.strip, body: body }
+    end
+
+    def drop_timestamps(text)
+      text.gsub(/\[\d\d?:\d\d[ APM]*\]\s*/, '').gsub(/\n+/, "\n")
     end
   end
 end
