@@ -1,0 +1,7 @@
+{
+  "name": "chat2md",
+  "description": "Slack/Skype chat history formatter for GitHub and Jira.",
+  "repository": "https://github.com/dreikanter/chat2md",
+  "website": "https://github.com/dreikanter/chat2md",
+  "keywords": ["chat", "markdown", "converter", "slack", "skype", "github", "jira", "plain text", "text"]
+}
